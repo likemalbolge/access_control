@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from django.shortcuts import render
 import requests
 from requests.auth import HTTPDigestAuth
