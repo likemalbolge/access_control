@@ -40,9 +40,9 @@ def get_records_from_terminal():
         data = json.loads(response.text)
 
         for record in data['AcsEvent']['InfoList']:
-            employee_no = record.get('employeeNoString', 'unknown')  # Отримання employeeNoString
-            time = record.get('time', 'unknown')  # Отримання часу
-            records_dict[employee_no] = time  # Додавання до словника
+            employee_no = record.get('employeeNoString', 'unknown')
+            time = record.get('time', 'unknown')
+            records_dict[employee_no] = time
 
         current_position += payload_template['AcsEventCond']['maxResults']
 

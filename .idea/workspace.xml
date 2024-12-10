@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d8d46-86a5-4025-88af-fdc2ff5b4bbe" name="Changes" comment="added views, templates and static files">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/templates/index.html" afterDir="false" />
+    <list default="true" id="eb9d8d46-86a5-4025-88af-fdc2ff5b4bbe" name="Changes" comment="created model Eployees and index view, wrote function to fetch data from terminal">
       <change beforePath="$PROJECT_DIR$/access_table/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -120,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1733828990747</updated>
-      <workItem from="1733828992086" duration="11588000" />
+      <workItem from="1733828992086" duration="11724000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -146,7 +140,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733830316809</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="created model Eployees and index view, wrote function to fetch data from terminal">
+      <option name="closed" value="true" />
+      <created>1733842768948</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733842768948</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +157,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="first commit" />
     <MESSAGE value="added views, templates and static files" />
-    <option name="LAST_COMMIT_MESSAGE" value="added views, templates and static files" />
+    <MESSAGE value="created model Eployees and index view, wrote function to fetch data from terminal" />
+    <option name="LAST_COMMIT_MESSAGE" value="created model Eployees and index view, wrote function to fetch data from terminal" />
   </component>
 </project>
