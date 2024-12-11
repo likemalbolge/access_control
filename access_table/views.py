@@ -9,8 +9,6 @@ def send_request(url, payload, username, password):
         auth = HTTPDigestAuth(username, password)
         response = requests.post(url, json=payload, auth=auth)
         response.raise_for_status()
-        print(response.request.body)
-        print(response.request.headers)
         return response.json()
     except requests.RequestException as e:
         print(f'Помилка запиту: {e}')
@@ -69,8 +67,10 @@ def index(request):
     comparison_result = []
     for employee in db_employees:
         if str(employee.employeeTerminalNo) in api_records:
-            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo, 'employeeName': employee.employeeName, 'status': 'Пікнувся'})
+            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo,
+                                      'employeeName': employee.employeeName, 'status': 'Пікнувся'})
         else:
-            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo, 'employeeName': employee.employeeName, 'status': 'Не пікнувся'})
+            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo,
+                                      'employeeName': employee.employeeName, 'status': 'Не пікнувся'})
 
     return render(request, 'index.html', context={'comp_res': comparison_result})
