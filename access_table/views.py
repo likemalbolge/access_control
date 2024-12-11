@@ -1,18 +1,33 @@
 from django.shortcuts import render
 import requests
 from requests.auth import HTTPDigestAuth
-import json
 from datetime import datetime
+import json
+import time
 
 
-def get_records_from_terminal():
+
+
+def send_request(url, payload, username, password):
+    response = requests.post(
+        url,
+        auth=HTTPDigestAuth(username, password),
+        json=payload
+    )
+    response.raise_for_status()
+    print(response.request.body)
+    print(response.request.headers)
+    return response.json()  # Парсинг JSON відповіді
+
+
+def fetch_all_records():
     today = datetime.now().strftime('%Y-%m-%d')
     start_time = f'{today}T08:00:00+02:00'
     end_time = f'{today}T21:00:00+02:00'
 
-
     url = 'http://192.168.8.39/ISAPI/AccessControl/AcsEvent?format=json'
-    auth = HTTPDigestAuth('admin', 'K04032000t')
+    username = 'admin'
+    password = 'K04032000t'
     payload_template = {
         'AcsEventCond': {
             'searchID': 'access_control',
@@ -25,32 +40,27 @@ def get_records_from_terminal():
         }
     }
 
-    initial_response = requests.post(url, auth=auth, data=json.dumps(payload_template))
-    print(initial_response.status_code)
-    initial_data = json.loads(initial_response.text)
+    initial_data = send_request(url, payload_template, username, password)
     total_matches = initial_data['AcsEvent']['totalMatches']
-    print(total_matches)
 
     records_dict = {}
-    current_position = payload_template['AcsEventCond']['maxResults']
+    current_position = 0
 
     while current_position < total_matches:
         payload_template['AcsEventCond']['searchResultPosition'] = current_position
-        print(payload_template)
-        print(auth)
-        response = requests.post(url, auth=auth, data=json.dumps(payload_template))
-        print(response.status_code)
-        data = json.loads(response.text)
+
+        data = send_request(url, payload_template, username, password)
 
         for record in data['AcsEvent']['InfoList']:
             employee_no = record['employeeNoString']
-            time = record['time']
-            records_dict[employee_no] = time
+            login_time = record['time']
+            records_dict[employee_no] = login_time
 
         current_position += payload_template['AcsEventCond']['maxResults']
+        time.sleep(5)
 
-    print(records_dict)
     return records_dict
 
+
 def index(request):
-    return render(request, 'index.html', context={'records': get_records_from_terminal()})
+    return render(request, 'index.html', context={'terminal_data': fetch_all_records()})
