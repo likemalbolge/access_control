@@ -17,7 +17,7 @@ def send_request(url, payload, username, password):
     response.raise_for_status()
     print(response.request.body)
     print(response.request.headers)
-    return response.json()  # Парсинг JSON відповіді
+    return response.json()
 
 
 def fetch_all_records():
