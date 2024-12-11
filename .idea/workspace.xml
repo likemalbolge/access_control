@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eb9d8d46-86a5-4025-88af-fdc2ff5b4bbe" name="Changes" comment="changed function of getting all records from terminal">
+    <list default="true" id="eb9d8d46-86a5-4025-88af-fdc2ff5b4bbe" name="Changes" comment="changed view template">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/access_table/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1733828990747</updated>
       <workItem from="1733828992086" duration="15436000" />
-      <workItem from="1733901163368" duration="16786000" />
+      <workItem from="1733901163368" duration="21101000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -201,7 +200,23 @@
       <option name="project" value="LOCAL" />
       <updated>1733910364540</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="changed function of getting all records from terminal">
+      <option name="closed" value="true" />
+      <created>1733923247800</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1733923247800</updated>
+    </task>
+    <task id="LOCAL-00012" summary="changed view template">
+      <option name="closed" value="true" />
+      <created>1733923411251</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1733923411251</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +227,7 @@
     <MESSAGE value="added views, templates and static files" />
     <MESSAGE value="created model Eployees and index view, wrote function to fetch data from terminal" />
     <MESSAGE value="changed function of getting all records from terminal" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed function of getting all records from terminal" />
+    <MESSAGE value="changed view template" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed view template" />
   </component>
 </project>
