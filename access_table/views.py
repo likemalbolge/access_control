@@ -1,20 +1,26 @@
 from django.shortcuts import render
-import requests
 from requests.auth import HTTPDigestAuth
 from datetime import datetime
-import time
+from .models import Employees
+import requests
 
 def send_request(url, payload, username, password):
-    response = requests.post(
-        url,
-        auth=HTTPDigestAuth(username, password),
-        json=payload
-    )
-    response.raise_for_status()
-    print(response.request.body)
-    print(response.request.headers)
-    return response.json()
+    try:
+        auth = HTTPDigestAuth(username, password)
+        response = requests.post(url, json=payload, auth=auth)
+        response.raise_for_status()
+        print(response.request.body)
+        print(response.request.headers)
+        return response.json()
+    except requests.RequestException as e:
+        print(f'Помилка запиту: {e}')
+        return None
 
+def add_to_dict(data_from_api, dict_to_add):
+    for record in data_from_api['AcsEvent']['InfoList']:
+        employee_no = record['employeeNoString']
+        login_time = record['time']
+        dict_to_add[employee_no] = login_time
 
 def fetch_all_records():
     today = datetime.now().strftime('%Y-%m-%d')
@@ -40,23 +46,31 @@ def fetch_all_records():
     total_matches = initial_data['AcsEvent']['totalMatches']
 
     records_dict = {}
-    current_position = 0
+
+    add_to_dict(initial_data, records_dict)
+
+    current_position = payload_template['AcsEventCond']['maxResults']
 
     while current_position < total_matches:
         payload_template['AcsEventCond']['searchResultPosition'] = current_position
 
         data = send_request(url, payload_template, username, password)
 
-        for record in data['AcsEvent']['InfoList']:
-            employee_no = record['employeeNoString']
-            login_time = record['time']
-            records_dict[employee_no] = login_time
+        add_to_dict(data, records_dict)
 
         current_position += payload_template['AcsEventCond']['maxResults']
-        time.sleep(5)
-
     return records_dict
 
 
 def index(request):
-    return render(request, 'index.html', context={'terminal_data': fetch_all_records()})
+    api_records = fetch_all_records()
+    db_employees = Employees.objects.all()
+
+    comparison_result = []
+    for employee in db_employees:
+        if str(employee.employeeTerminalNo) in api_records:
+            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo, 'employeeName': employee.employeeName, 'status': 'Пікнувся'})
+        else:
+            comparison_result.append({'employeeStringNo': employee.employeeTerminalNo, 'employeeName': employee.employeeName, 'status': 'Не пікнувся'})
+
+    return render(request, 'index.html', context={'comp_res': comparison_result})

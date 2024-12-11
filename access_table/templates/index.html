@@ -3,5 +3,22 @@
 {% block title %}<title>Таблиця контролю доступу</title>{% endblock %}
 
 {% block content %}
-    {{ terminal_data }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Номер в терміналі</th>
+                <th scope="col">Прізвище, ім'я</th>
+                <th scope="col">Статус</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in comp_res %}
+                <tr>
+                    <th scope="row">{{ employee.employeeStringNo }}</th>
+                    <td>{{ employee.employeeName }}</td>
+                    <td>{{ employee.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
