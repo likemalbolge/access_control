@@ -2,11 +2,7 @@ from django.shortcuts import render
 import requests
 from requests.auth import HTTPDigestAuth
 from datetime import datetime
-import json
 import time
-
-
-
 
 def send_request(url, payload, username, password):
     response = requests.post(
