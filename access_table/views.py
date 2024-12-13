@@ -16,11 +16,10 @@ def send_request(url, payload, username, password):
         return None
 
 
-def parse_records(data_from_api):
-    return {
-        record['employeeNoString']: record['time']
-        for record in data_from_api.get('AcsEvent', {}).get('InfoList', [])
-    }
+def add_record_to_db(data):
+    for item in data['AcsEvent']['InfoList']:
+        obj, created = Record.objects.get_or_create(employee=Employee.objects.get(
+            employeeTerminalNo=item['employeeNoString']), acs_time=item['time'])
 
 
 def fetch_all_records():
@@ -48,7 +47,7 @@ def fetch_all_records():
         return {}
 
     total_matches = initial_data.get('AcsEvent', {}).get('totalMatches', 0)
-    records_dict = parse_records(initial_data)
+    add_record_to_db(initial_data)
 
     current_position = payload_template['AcsEventCond']['maxResults']
 
@@ -56,18 +55,12 @@ def fetch_all_records():
         payload_template['AcsEventCond']['searchResultPosition'] = current_position
         data = send_request(url, payload_template, username, password)
         if data:
-            records_dict.update(parse_records(data))
+            add_record_to_db(data)
         current_position += payload_template['AcsEventCond']['maxResults']
-
-    return records_dict
 
 
 def index(request):
-    api_records = fetch_all_records()
-    employees = Employee.objects.all()
+    fetch_all_records()
     db_records = Record.objects.all()
-
-    for key, value in api_records.items():
-        obj, created = Record.objects.get_or_create(employee=employees.get(employeeTerminalNo=key), acs_time=value)
 
     return render(request, 'index.html', context={'db_records': db_records})

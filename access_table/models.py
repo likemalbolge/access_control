@@ -19,6 +19,9 @@ class Record(models.Model):
     def __str__(self):
         return f'{self.employee.employeeName} - {self.acs_time}'
 
+    def time_format(self):
+        return self.acs_time.strftime('%Y-%m-%dT%H:%M:%S+02:00')
+
     class Meta:
         verbose_name='Запис з терміналу'
         verbose_name_plural='Записи з терміналу'
