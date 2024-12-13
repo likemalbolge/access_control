@@ -6,17 +6,15 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Номер в терміналі</th>
-                <th scope="col">Прізвище, ім'я</th>
-                <th scope="col">Статус</th>
+                <th scope="col">Працівник</th>
+                <th scope="col">Час події</th>
             </tr>
         </thead>
         <tbody>
-            {% for employee in comp_res %}
+            {% for record in db_records %}
                 <tr>
-                    <th scope="row">{{ employee.employeeStringNo }}</th>
-                    <td>{{ employee.employeeName }}</td>
-                    <td>{{ employee.status }}</td>
+                    <td>{{ record.employee }}</td>
+                    <td>{{ record.acs_time }}</td>
                 </tr>
             {% endfor %}
         </tbody>

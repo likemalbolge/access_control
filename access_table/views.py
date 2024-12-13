@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from requests.auth import HTTPDigestAuth
 from datetime import datetime
-from .models import Employees
+from .models import Employee, Record
 import requests
 
 
@@ -26,7 +26,7 @@ def parse_records(data_from_api):
 def fetch_all_records():
     today = datetime.now().strftime('%Y-%m-%d')
     start_time = f'{today}T08:00:00+02:00'
-    end_time = f'{today}T21:00:00+02:00'
+    end_time = f'{today}T17:00:00+02:00'
 
     url = 'http://192.168.8.39/ISAPI/AccessControl/AcsEvent?format=json'
     username = 'admin'
@@ -64,15 +64,10 @@ def fetch_all_records():
 
 def index(request):
     api_records = fetch_all_records()
-    db_employees = Employees.objects.all()
+    employees = Employee.objects.all()
+    db_records = Record.objects.all()
 
-    comparison_result = [
-        {
-            'employeeStringNo': employee.employeeTerminalNo,
-            'employeeName': employee.employeeName,
-            'status': 'Пікнувся' if str(employee.employeeTerminalNo) in api_records else 'Не пікнувся'
-        }
-        for employee in db_employees
-    ]
+    for key, value in api_records.items():
+        obj, created = Record.objects.get_or_create(employee=employees.get(employeeTerminalNo=key), acs_time=value)
 
-    return render(request, 'index.html', context={'comp_res': comparison_result})
+    return render(request, 'index.html', context={'db_records': db_records})
