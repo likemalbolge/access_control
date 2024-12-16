@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.contrib import admin
 from .models import Employee, Record
-from rangefilter.filters import DateRangeFilterBuilder
+from rangefilter.filters import DateRangeQuickSelectListFilterBuilder
 
 admin.site.site_header = 'Адміністрування контролю доступу'
 admin.site.site_title = 'Адміністрування контролю доступу'
@@ -15,6 +15,6 @@ class EmployeeAdmin(admin.ModelAdmin):
 @admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):
     list_display = ('employee', 'acs_time')
-    list_filter = ('employee', ('acs_time', DateRangeFilterBuilder(title='часом події',
-                                                                   default_start=datetime.today(),
-                                                                   default_end=datetime.today())))
+    list_filter = ('employee', ('acs_time', DateRangeQuickSelectListFilterBuilder(title='часом події',
+                                                                                  default_start=datetime.today(),
+                                                                                  default_end=datetime.today())))
