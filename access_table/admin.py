@@ -15,6 +15,6 @@ class EmployeeAdmin(admin.ModelAdmin):
 @admin.register(Record)
 class RecordAdmin(admin.ModelAdmin):
     list_display = ('employee', 'acs_time')
-    list_filter = ('employee', ('acs_time', DateRangeFilterBuilder(title='Час події',
-                                                                   default_start=datetime(2024, 12, 1),
-                                                                   default_end=datetime(2024, 12, 31))))
+    list_filter = ('employee', ('acs_time', DateRangeFilterBuilder(title='часом події',
+                                                                   default_start=datetime.today(),
+                                                                   default_end=datetime.today())))
