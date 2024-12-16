@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'access_table.apps.AccessTableConfig',
+    'rangefilter.apps.RangeFilterConfig',
 ]
 
 MIDDLEWARE = [
