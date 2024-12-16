@@ -23,7 +23,7 @@ def add_record_to_db(data):
 
 def fetch_all_records():
     today = datetime.now().strftime('%Y-%m-%d')
-    start_time = f'2024-12-01T08:00:00+02:00'
+    start_time = f'{today}T08:00:00+02:00'
     end_time = f'{today}T21:00:00+02:00'
 
     url = 'http://192.168.8.39/ISAPI/AccessControl/AcsEvent?format=json'
