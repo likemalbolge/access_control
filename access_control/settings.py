@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'access_table.apps.AccessTableConfig',
     'rangefilter.apps.RangeFilterConfig',
+    'django_admin_listfilter_dropdown'
 ]
 
 MIDDLEWARE = [
