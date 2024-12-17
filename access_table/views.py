@@ -60,6 +60,6 @@ def fetch_all_records():
 
 def index(request):
     fetch_all_records()
-    db_records = Record.objects.all()
+    db_records = Record.objects.filter(acs_time__date=datetime.today())
 
     return render(request, 'index.html', context={'db_records': db_records})
