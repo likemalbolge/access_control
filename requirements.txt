@@ -1,4 +1,0 @@
-Django~=5.1.4
-django-admin-rangefilter~=0.13.2
-requests~=2.32.3
-django-admin-list-filter-dropdown~=1.0.3
