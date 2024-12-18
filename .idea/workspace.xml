@@ -7,7 +7,6 @@
     <list default="true" id="eb9d8d46-86a5-4025-88af-fdc2ff5b4bbe" name="Changes" comment="filter db data in index view">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/access_table/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/access_table/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/access_table/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,6 +128,7 @@
       <workItem from="1734347657087" duration="10202000" />
       <workItem from="1734419182101" duration="9710000" />
       <workItem from="1734505476429" duration="2099000" />
+      <workItem from="1734520901668" duration="329000" />
     </task>
     <task id="LOCAL-00001" summary="first commit">
       <option name="closed" value="true" />
@@ -322,7 +322,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734433141043</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="filter db data in index view">
+      <option name="closed" value="true" />
+      <created>1734521230293</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1734521230293</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
